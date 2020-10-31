@@ -5,7 +5,7 @@ const session = require("express-session");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const errorHandler = require("errorhandler");
-const http = require("http");
+const https = require("https");
 const io = require("socket.io");
 const { UserRefreshClient } = require("google-auth-library");
 
@@ -16,7 +16,7 @@ const isProduction = process.env.NODE_ENV === "production";
 
 //Initiate our app
 const app = express();
-const server = http.createServer(app);
+const server = https.createServer(app);
 const socketIO = io(server);
 
 //Configure our app
@@ -228,4 +228,4 @@ socketIO.on("connection", (socket) => {
 let port = process.env.PORT;
 let host = process.env.HOST;
 
-server.listen(port, host, () => console.log(`Server running on http://${host}:${port}/`));
+server.listen(port, host, () => console.log(`Server running on https://${host}:${port}/`));
